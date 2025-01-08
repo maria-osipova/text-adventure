@@ -33,5 +33,30 @@ int main() {
         }
     }
 
+    std::cout << "well, lets start then...\n";
+    {
+        std::string dummy;
+        std::getline(std::cin, dummy);
+    }
+
+    while (true) {
+        std::cout << "first of all i would ask you who you wanna be today. are you a man or a woman? type your answer. \n";
+
+        std::string response;
+        std::getline(std::cin, response);
+
+        if (response == "man") {
+            std::cout << "good job! let's continue.\n";
+            break;
+        }
+        else if (response == "woman") {
+            std::cout << "good job! let's continue.\n";
+            break;
+        }
+        else {
+            std::cout << "hmm.. I'm not sure if you typed man or woman. try again.\n";
+        }
+    }
+
     return 0;
 }
