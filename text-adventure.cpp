@@ -2,6 +2,7 @@
 #include <string>
 
 int main() {
+    /*
     std::cout << "hello, stranger! press enter to start.\n";
     {
         std::string dummy;
@@ -42,7 +43,7 @@ int main() {
     std::string gender;
 
     while (true) {
-        std::cout << "first of all i would like to ask you: who do you wanna be today? are you a man or a woman? type your answer. \n";
+        std::cout << "first of all i would like to ask you: who do you wanna be today? are you a man or a woman? type man or woman. \n";
 
         std::getline(std::cin, gender);
 
@@ -76,12 +77,41 @@ int main() {
         else {
             std::cout << "hmm.. I'm not sure if you typed your name. try again.\n";
         }
+    } */
+
+    std::string country_first, country_second;
+    bool first_country_valid = false;
+
+    while (true) {
+        if (!first_country_valid) {
+            std::cout << "now please enter the country you live in.\n";
+            std::getline(std::cin, country_first);
+
+            if (country_first.empty() || country_first.find_first_not_of(" \t") == std::string::npos) {
+                std::cout << "hmm.. i'm not sure if you typed the country you live in. try again.\n";
+                continue;
+            }
+
+            first_country_valid = true;
+        }
+
+        std::cout << "now please enter the country you would like to live in.\n";
+        std::getline(std::cin, country_second);
+
+        if (country_second.empty() || country_second.find_first_not_of(" \t") == std::string::npos) {
+            std::cout << "hmm.. i'm not sure if you typed the country you would like to live in. try again.\n";
+            continue;
+        }
+
+        if (country_first == country_second) {
+            std::cout << "your countries should be two different ones. try again.\n";
+            continue;
+        }
+
+        std::cout << "good job! press enter to continue.\n";
+        std::cin.get();
+        break;
     }
-
-
-    std::cout << "now please enter the country you live in.\n";
-
-    std::cout << "";
 
     return 0;
 }
