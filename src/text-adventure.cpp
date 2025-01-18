@@ -1,6 +1,26 @@
 #include <iostream>
 #include <string>
 #include </Users/maria/Downloads/text-adventure-starting/vcpkg/installed/arm64-osx/include/json/json.h>
+#include <fstream>
+
+
+void loadJson(const std::string& filePath, Json::Value& dialogues) {
+    std::ifstream file(filePath, std::ifstream::binary);
+    if (!file.is_open()) {
+        std::cerr << "Warning: Could not open file " << filePath << ". Using default dialogues.\n";
+        return;
+    }
+    file >> dialogues;
+    file.close();
+}
+
+// Функция для получения диалога
+std::string getDialogue(const Json::Value& dialogues, const std::string& key, const std::string& defaultText) {
+    if (dialogues.isMember(key)) {
+        return dialogues[key].asString();
+    }
+    return defaultText;
+}
 
 int main() {
     std::cout << "hello, stranger! press enter to start.\n";
