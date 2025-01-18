@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
+#include </Users/maria/Downloads/text-adventure-starting/vcpkg/installed/arm64-osx/include/json/json.h>
 
 int main() {
-    /*
     std::cout << "hello, stranger! press enter to start.\n";
     {
         std::string dummy;
@@ -50,12 +50,10 @@ int main() {
         if (gender == "man") {
             std::cout << "good job! let's continue.\n";
             break;
-        }
-        else if (gender == "woman") {
+        } else if (gender == "woman") {
             std::cout << "good job! let's continue.\n";
             break;
-        }
-        else {
+        } else {
             std::cout << "hmm.. I'm not sure if you typed man or woman. try again.\n";
         }
     }
@@ -77,7 +75,7 @@ int main() {
         else {
             std::cout << "hmm.. I'm not sure if you typed your name. try again.\n";
         }
-    } */
+    }
 
     std::string country_first, country_second;
     bool first_country_valid = false;
