@@ -3,7 +3,7 @@
 #include <string>
 #include </Users/maria/Downloads/text-adventure-starting/vcpkg/installed/arm64-osx/include/json/json.h>
 
-// Функция для загрузки JSON
+// function for loading JSON
 void loadJson(const std::string& filePath, Json::Value& dialogues) {
     std::ifstream file(filePath, std::ifstream::binary);
     if (!file.is_open()) {
@@ -14,15 +14,15 @@ void loadJson(const std::string& filePath, Json::Value& dialogues) {
     file.close();
 }
 
-// Функция для получения диалога
+// function for retrieving a dialogue
 std::string getDialogue(const Json::Value& dialogues, const std::string& key) {
     if (dialogues.isMember(key)) {
         return dialogues[key].asString();
     }
-    return ""; // Возвращаем пустую строку, если ключ отсутствует
+    return ""; // return an empty string if the key is missing
 }
 
-// Функция для замены подстрок
+// function for replacing substrings
 std::string replacePlaceholders(const std::string& text, const std::string& placeholder, const std::string& value) {
     std::string result = text;
     size_t pos = 0;
