@@ -1,33 +1,42 @@
-name: Deploy to GitHub Pages
+name: Deploy Static Site to GitHub Pages
 
 on:
+  # run workflow on push to the main branch
   push:
     branches:
       - main
+  # allow manual trigger from the actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
-  build:
+  deploy:
+    name: build and deploy
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      # step 1: check out the code from the repository
+      - name: checkout code
+        uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-
-      - name: Install dependencies
-        run: npm install --global http-server
-
-      - name: Build project
+      # step 2: remove the existing build directory if it exists
+      - name: clean build directory
         run: |
-          mkdir build
-          cp -r * build/
+          if [ -d build ]; then
+            echo "removing existing build directory..."
+            rm -rf build
+          fi
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      # step 3: create the build directory if necessary
+      - name: create build directory
+        run: mkdir build
+
+      # step 4: deploy the contents of the build folder to github pages
+      - name: deploy to github pages
+        uses: actions/deploy-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+          folder: build
