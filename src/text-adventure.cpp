@@ -3,7 +3,7 @@
 #include <string>
 #include </Users/maria/Downloads/text-adventure-starting/vcpkg/installed/arm64-osx/include/json/json.h>
 
-// function for loading JSON
+// function for loading json
 void loadJson(const std::string& filePath, Json::Value& dialogues);
 
 // function for retrieving a dialogue
@@ -11,6 +11,20 @@ std::string getDialogue(const Json::Value& dialogues, const std::string& key);
 
 // function for replacing substrings
 std::string replacePlaceholders(const std::string& text, const std::string& placeholder, const std::string& value);
+
+// function for checking yes/no questions
+std::string getYesNoInput(const Json::Value& dialogues, const std::string& retryKey) {
+    while (true) {
+        std::string response;
+        std::getline(std::cin, response);
+
+        if (response == "yes" || response == "no") {
+            return response;
+        }
+
+        std::cout << getDialogue(dialogues, retryKey) << "\n";
+    }
+}
 
 // function to handle the sea adventure storyline
 void storyAdventure(const Json::Value& dialogues);
@@ -89,40 +103,6 @@ int main() {
         }
     }
 
-    std::string country_first, country_second;
-    bool first_country_valid = false;
-
-    while (true) {
-        if (!first_country_valid) {
-            std::cout << getDialogue(dialogues, "country_prompt") << "\n";
-            std::getline(std::cin, country_first);
-
-            if (country_first.empty() || country_first.find_first_not_of(" \t") == std::string::npos) {
-                std::cout << getDialogue(dialogues, "country_retry") << "\n";
-                continue;
-            }
-
-            first_country_valid = true;
-        }
-
-        std::cout << getDialogue(dialogues, "country_wish_prompt") << "\n";
-        std::getline(std::cin, country_second);
-
-        if (country_second.empty() || country_second.find_first_not_of(" \t") == std::string::npos) {
-            std::cout << getDialogue(dialogues, "country_wish_retry_empty") << "\n";
-            continue;
-        }
-
-        if (country_first == country_second) {
-            std::cout << getDialogue(dialogues, "country_wish_retry_same") << "\n";
-            continue;
-        }
-
-        std::cout << getDialogue(dialogues, "country_valid") << "\n";
-        std::cin.get();
-        break;
-    }
-
     std::cout << getDialogue(dialogues, "bar_intro") << "\n";
     {
         std::string dummy;
@@ -136,16 +116,22 @@ int main() {
 
         if (choice == "man") {
             std::cout << getDialogue(dialogues, "bar_man") << "\n";
+            {
+                std::string dummy;
+                std::getline(std::cin, dummy);
+            }
             break;
         } else if (choice == "woman") {
             std::cout << getDialogue(dialogues, "bar_woman") << "\n";
+            {
+                std::string dummy;
+                std::getline(std::cin, dummy);
+            }
             break;
         } else {
             std::cout << getDialogue(dialogues, "bar_invalid") << "\n";
         }
     }
-
-    std::cout << getDialogue(dialogues, "conversation_continue") << "\n";
 
     // launch the sea adventure storyline
     storyAdventure(dialogues);
@@ -153,7 +139,7 @@ int main() {
     return 0;
 }
 
-// function for loading JSON
+// function for loading json
 void loadJson(const std::string& filePath, Json::Value& dialogues) {
     std::ifstream file(filePath, std::ifstream::binary);
     if (!file.is_open()) {
@@ -185,48 +171,90 @@ std::string replacePlaceholders(const std::string& text, const std::string& plac
 
 // function to handle the sea adventure storyline
 void storyAdventure(const Json::Value& dialogues) {
+
+    std::string response;
+
     // start the story
     std::cout << getDialogue(dialogues, "story_intro") << "\n";
+    {
+        std::string dummy;
+        std::getline(std::cin, dummy);
+    }
     std::cout << getDialogue(dialogues, "story_no_choice") << "\n";
+    {
+        std::string dummy;
+        std::getline(std::cin, dummy);
+    }
     std::cout << getDialogue(dialogues, "storm_start") << "\n";
+    {
+        std::string dummy;
+        std::getline(std::cin, dummy);
+    }
 
     // first question: would you jump to save someone overboard?
-    std::cout << getDialogue(dialogues, "storm_question") << " (yes/no)\n";
-    std::string response;
-    std::getline(std::cin, response);
+    std::cout << getDialogue(dialogues, "storm_question") << " type yes or no\n";
+    response = getYesNoInput(dialogues, "ready_retry");
     if (response == "yes") {
         std::cout << getDialogue(dialogues, "storm_answer_yes") << "\n";
+        {
+            std::string dummy;
+            std::getline(std::cin, dummy);
+        }
     } else {
         std::cout << getDialogue(dialogues, "storm_answer_no") << "\n";
+        {
+            std::string dummy;
+            std::getline(std::cin, dummy);
+        }
     }
 
     // continue the story
     std::cout << getDialogue(dialogues, "storm_aftermath") << "\n";
-
-    // second question: would you share your food supplies?
-    std::cout << getDialogue(dialogues, "storm_aftermath") << " (yes/no)\n";
-    std::getline(std::cin, response);
-    if (response == "yes") {
-        std::cout << getDialogue(dialogues, "share_food_yes") << "\n";
-    } else {
-        std::cout << getDialogue(dialogues, "share_food_no") << "\n";
+    {
+        std::string dummy;
+        std::getline(std::cin, dummy);
     }
 
-    // third question: would you check the faint light on the horizon?
-    std::cout << getDialogue(dialogues, "light_on_horizon") << " (yes/no)\n";
-    std::getline(std::cin, response);
+    // second question: would you share your food supplies?
+    std::cout << getDialogue(dialogues, "storm_aftermath3") << " type yes or no\n";
+    response = getYesNoInput(dialogues, "ready_retry");
     if (response == "yes") {
-        std::cout << getDialogue(dialogues, "light_answer_yes") << "\n";
+        std::cout << getDialogue(dialogues, "share_food_yes") << "\n";
+        {
+            std::string dummy;
+            std::getline(std::cin, dummy);
+        }
+    } else {
+        std::cout << getDialogue(dialogues, "share_food_no") << "\n";
+        {
+            std::string dummy;
+            std::getline(std::cin, dummy);
+        }
+    }
+
+    // third story + question: would you check the faint light on the horizon?
+    std::cout << getDialogue(dialogues, "light_on_horizon2") << " type yes or no\n";
+    response = getYesNoInput(dialogues, "ready_retry");
+    if (response == "yes") {
+        std::cout << getDialogue(dialogues, "light_answer_yes1") << "\n";
+        {
+            std::string dummy;
+            std::getline(std::cin, dummy);
+        }
     } else {
         std::cout << getDialogue(dialogues, "light_answer_no") << "\n";
+        {
+            std::string dummy;
+            std::getline(std::cin, dummy);
+        }
     }
 
     // conclude the story
     std::cout << getDialogue(dialogues, "story_ending") << "\n";
 
     // final choice: go with the companion or stay
-    std::cout << getDialogue(dialogues, "final_choice") << " (yes/no)\n";
-    std::getline(std::cin, response);
+    std::cout << getDialogue(dialogues, "final_choice") << " type yes or no\n";
+    response = getYesNoInput(dialogues, "ready_retry");
     if (response == "yes") {
         std::cout << "you chose to go with them. your adventure continues...\n";
     } else {
