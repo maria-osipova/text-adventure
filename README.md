@@ -19,7 +19,25 @@ then:
 
 `./text-adventure`                                                                                      
 
+
 this project uses [vcpkg](https://github.com/microsoft/vcpkg) to manage dependencies.
 ensure you have vcpkg installed and set up.
+
+for emcc: 
+
+`cd /Users/maria/Downloads/text-adventure-starting/jsoncpp
+mkdir -p build
+cd build
+emcmake cmake .. -DBUILD_SHARED_LIBS=OFF
+emmake make`
+
+`ls /Users/maria/Downloads/text-adventure-starting/jsoncpp/build/lib`
+
+`emcc /Users/maria/Downloads/text-adventure-starting/src/text-adventure.cpp -o index.html \
+-I/Users/maria/Downloads/text-adventure-starting/jsoncpp/include \
+-L/Users/maria/Downloads/text-adventure-starting/jsoncpp/build/lib \
+-ljsoncpp \
+--preload-file /Users/maria/Downloads/text-adventure-starting/src/dialogues.json@dialogues.json`
+
 
 thank you! :3
