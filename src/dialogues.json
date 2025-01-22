@@ -23,5 +23,20 @@
   "bar_man": "you approach the man. he looks at you and says, 'tough day, huh? wanna talk about it?'",
   "bar_woman": "you approach the woman. she smiles and says, 'you look like you need a drink. care to join me?'",
   "bar_invalid": "hmm... i didn't understand that. please choose 'man' or 'woman'.",
-  "conversation_continue": "the conversation continues... (to be developed further)"
+  "conversation_continue": "the conversation continues... (to be developed further)",
+  "story_intro": "you know, something happened to me once that made me see life differently.",
+  "story_no_choice": "looks like you didn't have the option not to listen to this story. you had to stay.",
+  "storm_start": "it happened a few years ago. we went sailing on a small boat. the crew was small: me, the captain, and two friends. everything was fine until the storm started. the boat was shaking, the waves were crashing, and then one of us went overboard.",
+  "storm_question": "would you jump in to save him, even if it put your own life at risk?",
+  "storm_answer_yes": "you have a brave heart. i jumped too. it was probably the scariest moment of my life, but i saved him. the waves threw us around, but thanks to the captain throwing us a lifebuoy, we managed to get back on board.",
+  "storm_answer_no": "you know, it's a tough decision. sometimes saving someone feels natural, but fear can be stronger. in our case, i jumped. the waves threw us around, but thanks to the captain throwing us a lifebuoy, we managed to get back on board.",
+  "storm_aftermath": "but the storm took our supplies. we lost almost all the food. only one box of canned goods remained, and there were four of us. the captain suggested giving the food to those who needed it most. would you share your supplies, even if you were hungry yourself?",
+  "share_food_yes": "you're a generous person. we decided to share too. it was hard, but it helped us support each other and get through the difficulties together.",
+  "share_food_no": "sometimes you have to think about yourself, especially in such conditions. but you know, that can distance you from others. one of our team tried to hide some of the food. it led to arguments, but in the end, the captain made him share. that decision saved us.",
+  "light_on_horizon": "on the third day, we saw a faint light on the horizon. one of us said it might be just an illusion or a trap, but the captain decided to check it out. would you head there, even if it could be dangerous?",
+  "light_answer_yes": "you trust your instincts. we took the risk, and it was the right decision. the light came from an abandoned fishing boat. on board, we found water, some food, and a radio, which allowed a cargo ship to find us.",
+  "light_answer_no": "caution is not a bad quality. but you know, sometimes risks pay off. this time we decided to check the light, and it saved our lives. on the boat, we found water, some food, and a radio, which allowed a cargo ship to find us.",
+  "story_ending": "that's how it went. life at sea is unpredictable. you learn a lot about yourself in such conditions.",
+  "final_choice": "alright, i have to go. but if you want, you can come with me. there’s a small adventure ahead.",
+  "stay_choice": "i understand. sometimes the best choice is to stay where you are. good luck to you."
 }

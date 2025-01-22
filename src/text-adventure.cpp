@@ -4,34 +4,16 @@
 #include </Users/maria/Downloads/text-adventure-starting/vcpkg/installed/arm64-osx/include/json/json.h>
 
 // function for loading JSON
-void loadJson(const std::string& filePath, Json::Value& dialogues) {
-    std::ifstream file(filePath, std::ifstream::binary);
-    if (!file.is_open()) {
-        std::cerr << "warning: could not open file " << filePath << ".\n";
-        return;
-    }
-    file >> dialogues;
-    file.close();
-}
+void loadJson(const std::string& filePath, Json::Value& dialogues);
 
 // function for retrieving a dialogue
-std::string getDialogue(const Json::Value& dialogues, const std::string& key) {
-    if (dialogues.isMember(key)) {
-        return dialogues[key].asString();
-    }
-    return ""; // return an empty string if the key is missing
-}
+std::string getDialogue(const Json::Value& dialogues, const std::string& key);
 
 // function for replacing substrings
-std::string replacePlaceholders(const std::string& text, const std::string& placeholder, const std::string& value) {
-    std::string result = text;
-    size_t pos = 0;
-    while ((pos = result.find(placeholder, pos)) != std::string::npos) {
-        result.replace(pos, placeholder.length(), value);
-        pos += value.length();
-    }
-    return result;
-}
+std::string replacePlaceholders(const std::string& text, const std::string& placeholder, const std::string& value);
+
+// function to handle the sea adventure storyline
+void storyAdventure(const Json::Value& dialogues);
 
 int main() {
     Json::Value dialogues;
@@ -165,5 +147,89 @@ int main() {
 
     std::cout << getDialogue(dialogues, "conversation_continue") << "\n";
 
+    // launch the sea adventure storyline
+    storyAdventure(dialogues);
+
     return 0;
+}
+
+// function for loading JSON
+void loadJson(const std::string& filePath, Json::Value& dialogues) {
+    std::ifstream file(filePath, std::ifstream::binary);
+    if (!file.is_open()) {
+        std::cerr << "warning: could not open file " << filePath << ".\n";
+        return;
+    }
+    file >> dialogues;
+    file.close();
+}
+
+// function for retrieving a dialogue
+std::string getDialogue(const Json::Value& dialogues, const std::string& key) {
+    if (dialogues.isMember(key)) {
+        return dialogues[key].asString();
+    }
+    return ""; // return an empty string if the key is missing
+}
+
+// function for replacing substrings
+std::string replacePlaceholders(const std::string& text, const std::string& placeholder, const std::string& value) {
+    std::string result = text;
+    size_t pos = 0;
+    while ((pos = result.find(placeholder, pos)) != std::string::npos) {
+        result.replace(pos, placeholder.length(), value);
+        pos += value.length();
+    }
+    return result;
+}
+
+// function to handle the sea adventure storyline
+void storyAdventure(const Json::Value& dialogues) {
+    // start the story
+    std::cout << getDialogue(dialogues, "story_intro") << "\n";
+    std::cout << getDialogue(dialogues, "story_no_choice") << "\n";
+    std::cout << getDialogue(dialogues, "storm_start") << "\n";
+
+    // first question: would you jump to save someone overboard?
+    std::cout << getDialogue(dialogues, "storm_question") << " (yes/no)\n";
+    std::string response;
+    std::getline(std::cin, response);
+    if (response == "yes") {
+        std::cout << getDialogue(dialogues, "storm_answer_yes") << "\n";
+    } else {
+        std::cout << getDialogue(dialogues, "storm_answer_no") << "\n";
+    }
+
+    // continue the story
+    std::cout << getDialogue(dialogues, "storm_aftermath") << "\n";
+
+    // second question: would you share your food supplies?
+    std::cout << getDialogue(dialogues, "storm_aftermath") << " (yes/no)\n";
+    std::getline(std::cin, response);
+    if (response == "yes") {
+        std::cout << getDialogue(dialogues, "share_food_yes") << "\n";
+    } else {
+        std::cout << getDialogue(dialogues, "share_food_no") << "\n";
+    }
+
+    // third question: would you check the faint light on the horizon?
+    std::cout << getDialogue(dialogues, "light_on_horizon") << " (yes/no)\n";
+    std::getline(std::cin, response);
+    if (response == "yes") {
+        std::cout << getDialogue(dialogues, "light_answer_yes") << "\n";
+    } else {
+        std::cout << getDialogue(dialogues, "light_answer_no") << "\n";
+    }
+
+    // conclude the story
+    std::cout << getDialogue(dialogues, "story_ending") << "\n";
+
+    // final choice: go with the companion or stay
+    std::cout << getDialogue(dialogues, "final_choice") << " (yes/no)\n";
+    std::getline(std::cin, response);
+    if (response == "yes") {
+        std::cout << "you chose to go with them. your adventure continues...\n";
+    } else {
+        std::cout << getDialogue(dialogues, "stay_choice") << "\n";
+    }
 }
