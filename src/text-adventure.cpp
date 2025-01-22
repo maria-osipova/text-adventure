@@ -172,6 +172,10 @@ std::string replacePlaceholders(const std::string& text, const std::string& plac
 // function to handle the sea adventure storyline
 void storyAdventure(const Json::Value& dialogues) {
 
+    int courage = 0;    // positive values indicate bravery
+    int generosity = 0; // positive values indicate generosity
+    int trust = 0;      // positive values indicate trustfulness
+
     std::string response;
 
     // start the story
@@ -196,11 +200,13 @@ void storyAdventure(const Json::Value& dialogues) {
     response = getYesNoInput(dialogues, "ready_retry");
     if (response == "yes") {
         std::cout << getDialogue(dialogues, "storm_answer_yes") << "\n";
+        courage += 1; // increment courage
         {
             std::string dummy;
             std::getline(std::cin, dummy);
         }
     } else {
+        courage -= 1; // decrement courage
         std::cout << getDialogue(dialogues, "storm_answer_no") << "\n";
         {
             std::string dummy;
@@ -220,11 +226,13 @@ void storyAdventure(const Json::Value& dialogues) {
     response = getYesNoInput(dialogues, "ready_retry");
     if (response == "yes") {
         std::cout << getDialogue(dialogues, "share_food_yes") << "\n";
+        generosity += 1;
         {
             std::string dummy;
             std::getline(std::cin, dummy);
         }
     } else {
+        generosity -= 1;
         std::cout << getDialogue(dialogues, "share_food_no") << "\n";
         {
             std::string dummy;
@@ -236,6 +244,7 @@ void storyAdventure(const Json::Value& dialogues) {
     std::cout << getDialogue(dialogues, "light_on_horizon2") << " type yes or no\n";
     response = getYesNoInput(dialogues, "ready_retry");
     if (response == "yes") {
+        trust += 1;
         std::cout << getDialogue(dialogues, "light_answer_yes1") << "\n";
         {
             std::string dummy;
@@ -243,6 +252,7 @@ void storyAdventure(const Json::Value& dialogues) {
         }
     } else {
         std::cout << getDialogue(dialogues, "light_answer_no") << "\n";
+        trust -= 1;
         {
             std::string dummy;
             std::getline(std::cin, dummy);
