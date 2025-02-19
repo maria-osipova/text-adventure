@@ -3,6 +3,9 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/emsdk" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/emsdk/jsoncpp" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/jsoncpp" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vcpkg" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vcpkg/jsoncpp" vcs="Git" />
   </component>
 </project>
