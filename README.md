@@ -2,8 +2,6 @@
 this is a project i built for the [codecademy c++ course](https://www.codecademy.com/enrolled/courses/learn-c-plus-plus).  
 it is a story i made up myself, hope you'd enjoy it!
 
-https://maria-osipova.github.io/text-adventure/
-
 to make the program run from the terminal use*
 
 `c++ -std=c++17 -I/Users/maria/Downloads/text-adventure-starting/vcpkg/installed/arm64-osx/include \
